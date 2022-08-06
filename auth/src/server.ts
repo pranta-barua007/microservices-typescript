@@ -1,34 +1,5 @@
-import express from "express";
-import "express-async-errors";
-
-import { currentUserRouter } from "./routes/current-user";
-import { signinRouter } from "./routes/signin";
-import { signoutRouter } from "./routes/signout";
-import { signupRouter } from "./routes/signup";
-import { errorHandler } from "./middlewares/error-handler";
-import { NotFoundError } from "./errors/not-found-error";
 import mongoose from "mongoose";
-import cookieSession from "cookie-session";
-
-const app = express();
-
-app.set('trust proxy', true); //handle https proxy of ngnx
-app.use(express.json());
-app.use(cookieSession({
-  signed: false,
-  secure: true
-}))
-
-app.use(currentUserRouter);
-app.use(signinRouter);
-app.use(signoutRouter);
-app.use(signupRouter);
-
-app.all("*", async () => {
-  throw new NotFoundError();
-});
-
-app.use(errorHandler);
+import { app } from "./app";
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -36,6 +7,13 @@ const start = async () => {
   }
   try {
     await mongoose.connect('mongodb://auth-mongo-srv:27017/auth');
+    mongoose.connection.once('open', () => {
+      console.log('MongoDB connection is Ready!');
+    });
+
+    mongoose.connection.on('error', (err) => {
+      console.error(err);
+    });
   } catch (err) {
     console.error(err)
   }
