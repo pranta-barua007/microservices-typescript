@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { app } from "./app";
+import { natsWrapper } from "./nats-wrapper";
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -11,8 +12,16 @@ const start = async () => {
   }
 
   try {
+    await natsWrapper.connect('ticketing', 'lskjf', 'https://nats-srv:4222');
+    natsWrapper.client.on('close', () => {
+      console.log('NATS connection closed');
+      process.exit();
+    })
+    process.on('SIGINT', () => natsWrapper.client.close());
+    process.on('SIGTERM', () => natsWrapper.client.close());
+
     await mongoose.connect(process.env.MONGO_URI);
-    mongoose.connection.once('open', () => {
+    mongoose.connection.on('open', () => {
       console.log('MongoDB connection is Ready!');
     });
 
@@ -24,7 +33,7 @@ const start = async () => {
   }
 
   app.listen(3000, () => {
-    console.log("Listening on port 3000!!!!!!!!");
+    console.log("Listening on port 3000!!!!");
   });
 }
 
