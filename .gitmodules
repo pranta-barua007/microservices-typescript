@@ -1,0 +1,3 @@
+[submodule "microservices-typescript-common"]
+	path = microservices-typescript-common
+	url = https://github.com/pranta-barua007/microservices-typescript-common
