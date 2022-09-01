@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
-import { OrderStatus } from '@cygnetops/common';
+import { OrderStatus } from '@prbtickets/common';
 import { TicketDoc } from './ticket';
+
+export { OrderStatus };
 
 interface OrderAttrs {
   userId: string;
