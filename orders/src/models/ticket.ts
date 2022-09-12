@@ -45,6 +45,15 @@ const ticketSchema = new mongoose.Schema(
 ticketSchema.set('versionKey', 'version');
 ticketSchema.plugin(updateIfCurrentPlugin);
 
+//OPTIONAL way to handle versioning
+// ticketSchema.pre('save', function(done) { //plugin for managing versioning accross ticket & order service
+//   this.$where = {
+//     version: this.get('version') - 1
+//   }
+
+//   done();
+// });
+
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
   return new Ticket({
     _id: attrs.id,
