@@ -40,6 +40,14 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: prantab/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
     - image: prantab/client
       context: client
       docker:
