@@ -1,9 +1,11 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
+import * as dotenv from 'dotenv'
 
+dotenv.config();
 declare global {
-  var signin: () => string[];
+  var signin: (id?: string) => string[];
 }
 
 jest.mock('../nats-wrapper');
@@ -33,10 +35,10 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-global.signin = () => {
+global.signin = (id?: string) => {
   // Build a JWT payload.  { id, email }
   const payload = {
-    id: new mongoose.Types.ObjectId().toHexString(),
+    id: id || new mongoose.Types.ObjectId().toHexString(),
     email: "test@test.com",
   };
 
