@@ -4,8 +4,9 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
+    "start": "ts-node-dev src/server.ts",
     "test": "jest --watchAll --no-cache",
-    "start": "ts-node-dev src/server.ts"
+    "test:ci": "jest"
   },
   "jest": {
     "preset": "ts-jest",
