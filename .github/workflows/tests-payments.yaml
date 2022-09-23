@@ -1,0 +1,14 @@
+name: tests-payments
+
+on:
+  pull_request
+
+env:
+  STRIPE_KEY: sk_test_51HNefgB9logyXHwVVO4F6ISqWt7KE1DrcB1n8BnPbpRkhjL7tU3v6OkEDGtt69u4Iz3j3znckNJMOI21MTDuJWxQ00kPxYs2yq
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd payments && npm install && npm run test:ci
