@@ -6,7 +6,7 @@ on:
       - 'payments/**'
 
 env:
-  STRIPE_KEY: sk_test_51HNefgB9logyXHwVVO4F6ISqWt7KE1DrcB1n8BnPbpRkhjL7tU3v6OkEDGtt69u4Iz3j3znckNJMOI21MTDuJWxQ00kPxYs2yq
+  STRIPE_KEY: ${{ secrets.STRIPE_KEY }}
 
 jobs:
   build:
