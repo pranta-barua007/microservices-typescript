@@ -5,12 +5,11 @@ on:
     paths:
       - 'payments/**'
 
-env:
-  STRIPE_KEY: ${{ secrets.STRIPE_KEY }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: cd payments && npm install && npm run test:ci
+        env:
+          STRIPE_KEY: ${{ secrets.STRIPE_KEY }}
