@@ -36,6 +36,30 @@ Check all created secrets
 $ kubectl get secrets
 ```
 
+## Developement setup
+
+We need to edit the `host` file of our computer to identify our custom route  in dev environment.
+
+![Find Host file](https://github.com/pranta-barua007/microservices-typescript/blob/master/__readme-images/4-hostfile.png?raw=true)
+
+Add `127.0.0.1 ticketing.dev` to the host file
+
+![Edit Host file](https://github.com/pranta-barua007/microservices-typescript/blob/master/__readme-images/4.1-hostfiledit.png?raw=true)
+
+## Troubleshooting
+
+You may face this error in `Chrome Browser` or `Chromium` based browsers
+
+![Chrome Error](https://github.com/pranta-barua007/microservices-typescript/blob/master/__readme-images/4.2-err.png?raw=true)
+
+To fix the error -> 
+
+- Click on the active tab of the browser
+- Type `thisisunsafe`
+- The error should gone by now
+
+![Fix Chrome Error](https://github.com/pranta-barua007/microservices-typescript/blob/master/__readme-images/4.3-fix.png?raw=true)
+
 ## Service's overview
 
 ![Service overview](https://github.com/pranta-barua007/microservices-typescript/blob/master/__readme-images/1-service.png?raw=true)
