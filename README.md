@@ -71,3 +71,7 @@ To fix the error ->
 ## Events for communicating between Mircroservice's through NATS
 
 ![NATS Events](https://github.com/pranta-barua007/microservices-typescript/blob/master/__readme-images/2-events.png?raw=true)
+
+## Developement Flow
+
+![Dev Flow](https://github.com/pranta-barua007/microservices-typescript/blob/master/__readme-images/5-devflow.png?raw=true)
