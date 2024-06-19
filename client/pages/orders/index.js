@@ -8,8 +8,8 @@ const OrderIndex = ({ orders }) => {
           <li key={order.id}>
             <p>
               {order.ticket.title} - {order.status}
-              <Link href="/orders/[orderId]" as={`/orders/${order.id}`}>
-                <a className="nav-link">View</a>
+              <Link className="nav-link" href="/orders/[orderId]" as={`/orders/${order.id}`}>
+                View
               </Link>
             </p>
           </li>

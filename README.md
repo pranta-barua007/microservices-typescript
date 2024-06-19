@@ -21,14 +21,14 @@ $ skaffold dev
 
 To set a JSON web token secret
 ```console
-$ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=yourTokenSecret
+$ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=<YOUR_JWT_SECRET>
 ```
 
 To set a STRIPE secret (needed for `payments` service)
 Create your STRIPE account and get the secret
 * [stripe](https://stripe.com/docs/keys)
 ```console
-$ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=sk_test_4eC39HqLyjWDarjtT1zdp7dc
+$ kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<YOUR_STRIPE_SECRET_KEY>
 ```
 
 Check all created secrets
