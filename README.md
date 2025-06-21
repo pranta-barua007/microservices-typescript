@@ -2,6 +2,8 @@
 
 An microservices app created with Express.js, Typescript, MongoDB, BullJS, Docker, Kubernernetes, Ingress-NGINX & NATS.
 
+![Grafana Dashboard](https://github.com/pranta-barua007/microservices-typescript/blob/master/__readme-images/grafana-dashboard.gif?raw=true)
+
 ### Requirements
 
 - [Docker](https://www.docker.com)
@@ -14,9 +16,9 @@ An microservices app created with Express.js, Typescript, MongoDB, BullJS, Docke
 To install Helm on Unix-based systems:
 
 ```shell
-$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-$ chmod 700 get_helm.sh
-$ ./get_helm.sh
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
 ```
 
 For other OS or advanced methods, visit: [Helm Installation Docs](https://helm.sh/docs/intro/install/)
@@ -56,30 +58,30 @@ helm install kube-prometheus prometheus-community/kube-prometheus-stack \
 ### Apply monitoring configuration:
 
 ```console
-$ kubectl apply -k infra/monitoring/
+kubectl apply -k infra/monitoring/
 ```
 
 ### Run all services in parallel (Skaffold must be installed):
 
 To set a JSON web token secret
 ```console
-$ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=<YOUR_JWT_SECRET>
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=<YOUR_JWT_SECRET>
 ```
 
 To set a STRIPE secret (needed for `payments` service)
 Create your STRIPE account and get the secret
 * [stripe](https://stripe.com/docs/keys)
 ```console
-$ kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<YOUR_STRIPE_SECRET_KEY>
+kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<YOUR_STRIPE_SECRET_KEY>
 ```
 
 Check all created secrets
 ```console
-$ kubectl get secrets
+kubectl get secrets
 ```
 
 ```console
-$ skaffold dev
+skaffold dev
 ```
 
 ## Developement setup
@@ -131,25 +133,25 @@ skaffold dev
 
 Apply config to monitoring services
 ```console
-$ kubectl apply -k infra/monitoring/
+kubectl apply -k infra/monitoring/
 ```
 
 Expose Ingress-NGINX Metrics
 ```console
-$ kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller-metrics 10254:10254
+kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller-metrics 10254:10254
 ```
 
 access Ingress-NGINX Metrics on `http://localhost:10254/metrics`
 
 Expose Prometheus Metrics
 ```console
-$ kubectl port-forward svc/kube-prometheus-kube-prome-prometheus -n monitoring 9090:9090
+kubectl port-forward svc/kube-prometheus-kube-prome-prometheus -n monitoring 9090:9090
 ```
 access Prometheus on `http://localhost:9090/targets`
 
 Expose Grafana Dashboard
 ```console
-$ kubectl port-forward svc/kube-prometheus-grafana -n monitoring 8080:80
+kubectl port-forward svc/kube-prometheus-grafana -n monitoring 8080:80
 ```
 
 access Grafana Dashboard on `http://localhost:8080`
