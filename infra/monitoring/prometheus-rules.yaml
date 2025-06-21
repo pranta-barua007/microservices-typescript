@@ -1,0 +1,60 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: ingress-nginx-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+    - name: ingress-nginx.rules
+      rules:
+        - alert: IngressHighLatencyP95
+          expr: |
+            histogram_quantile(0.95, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket[5m])) by (le, ingress, host, path)) > 0.5
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High 95th percentile latency on Ingress (>500ms)"
+        - alert: IngressHigh5xxErrorRate
+          expr: |
+            sum(rate(nginx_ingress_controller_requests{status=~"5.."}[1m])) /
+            sum(rate(nginx_ingress_controller_requests[1m])) > 0.05
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High 5xx error rate in Ingress (>5%)"
+        - alert: IngressHighRequestRate
+          expr: |
+            sum(rate(nginx_ingress_controller_requests[30s])) > 1000
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High Ingress request rate (>1000 RPS)"
+        - alert: IngressNoTraffic
+          expr: |
+            sum(rate(nginx_ingress_controller_requests[5m])) by (ingress) < 0.01
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Ingress has no incoming traffic for 5 minutes"
+        - alert: IngressControllerCrashLooping
+          expr: |
+            increase(kube_pod_container_status_restarts_total{namespace="ingress-nginx", container="controller"}[5m]) > 3
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Ingress controller pod is crash looping"
+        - alert: IngressHighLatencyP90
+          expr: |
+            histogram_quantile(0.90, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket[5m])) by (le, ingress)) > 0.3
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High 90th percentile latency on Ingress (>300ms)"
