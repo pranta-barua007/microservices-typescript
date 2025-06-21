@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monitoring
+
+resources:
+  - ingress-nginx-monitor.yaml
+  - prometheus-rules.yaml    # optional alerts
+
+configMapGenerator:
+  - name: grafana-dashboards
+    files:
+      - grafana-dashboards/3119_rev2.json
+      - grafana-dashboards/kubernetes-cluster.json
+      - grafana-dashboards/nginx-ingress.json
+      - grafana-dashboards/route-and-pod-metrics.json # custom dashboard
+    options:
+      annotations:
+        grafana_folder: "Custom Dashboards"
+      labels:
+        grafana_dashboard: "1"
