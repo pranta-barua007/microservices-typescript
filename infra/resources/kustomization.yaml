@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../k8s  # This is now a valid Kustomize base directory
+
+patches:
+  - path: auth-resources.yaml
+    target:
+      kind: Deployment
+      name: auth-depl
+  - path: tickets-resources.yaml
+    target:
+      kind: Deployment
+      name: tickets-depl
+  - path: orders-resources.yaml
+    target:
+      kind: Deployment
+      name: orders-depl
+  - path: payments-resources.yaml
+    target:
+      kind: Deployment
+      name: payments-depl
+  - path: expiration-resources.yaml
+    target:
+      kind: Deployment
+      name: expiration-depl
+  - path: client-resources.yaml
+    target:
+      kind: Deployment
+      name: client-depl
