@@ -131,11 +131,6 @@ Services should be running on `ticketing.dev` if not start by
 skaffold dev
 ```
 
-Apply resource thresholding to services
-```console
-kubectl apply -k infra/resources/
-```
-
 Apply config to monitoring services
 ```console
 kubectl apply -k infra/monitoring/

@@ -1,4 +1,4 @@
-apiVersion: skaffold/v4beta6
+apiVersion: skaffold/v4beta13
 kind: Config
 build:
   local:
@@ -52,7 +52,7 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
-manifests:
-  rawYaml:
-    - ./infra/k8s/*
+manifests: 
+  rawYaml: 
+    - ./infra/k8s/* 
     - ./infra/k8s-dev/*

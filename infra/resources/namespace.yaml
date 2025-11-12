@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: ticketing
-  labels:
-    app.kubernetes.io/part-of: ticketing-system
