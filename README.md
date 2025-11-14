@@ -173,3 +173,22 @@ kubectl create namespace monitoring
 ```console
 kubectl get svc -n monitoring
 ```
+
+### Performance Testing
+
+Oha istallation
+```console
+cargo install oha
+```
+Run performance testing
+
+```console
+chmod +x perf-tests/oha/*.sh
+```
+
+Example
+```bash
+bash perf-tests/oha/spike-test.sh
+```
+
+
