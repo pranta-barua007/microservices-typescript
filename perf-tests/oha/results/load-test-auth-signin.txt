@@ -1,0 +1,51 @@
+ bash perf-tests/oha/load-test-auth-signin.sh
+Created test user: loadtest_1763135215@example.com (password: LoadTestP@ssw0rd)
+Cookie saved to /tmp/ticketing_test_cookie.txt
+🔐 Auth Service Load Test (500 concurrent users, 2 minutes)
+Summary:
+  Success rate: 100.00%
+  Total:        2.0041 min
+  Slowest:      1.0121 min
+  Fastest:      0.0013 min
+  Average:      0.5511 min
+  Requests/sec: 17.5393
+
+  Total data:   117.92 KiB
+  Size/request: 75 B
+  Size/sec:     1004 B
+
+Response time histogram:
+  0.001 min [1]   |
+  0.102 min [69]  |■■■■
+  0.203 min [55]  |■■■
+  0.305 min [77]  |■■■■■
+  0.406 min [138] |■■■■■■■■■
+  0.507 min [198] |■■■■■■■■■■■■■
+  0.608 min [340] |■■■■■■■■■■■■■■■■■■■■■■
+  0.709 min [474] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.810 min [75]  |■■■■■
+  0.911 min [100] |■■■■■■
+  1.012 min [82]  |■■■■■
+
+Response time distribution:
+  10.00% in 0.2286 min
+  25.00% in 0.4845 min
+  50.00% in 0.5933 min
+  75.00% in 0.6404 min
+  90.00% in 0.8268 min
+  95.00% in 0.9117 min
+  99.00% in 0.9827 min
+  99.90% in 1.0100 min
+  99.99% in 1.0121 min
+
+
+Details (average, fastest, slowest):
+  DNS+dialup:   0.0046 min, 0.0000 min, 0.0319 min
+  DNS-lookup:   0.0000 min, 0.0000 min, 0.0003 min
+
+Status code distribution:
+  [200] 1608 responses
+  [502] 1 responses
+
+Error distribution:
+  [500] aborted due to deadline

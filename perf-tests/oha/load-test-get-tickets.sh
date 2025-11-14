@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# Ticket read load test. Creates session cookie then runs test:
+#  - list tickets (GET)
+# Concurrency and durations can be tuned per call.
 
 BASE="https://127.0.0.1"
 HOST_HEADER="ticketing.dev"
@@ -11,11 +14,12 @@ source "$SCRIPT_DIR/common_prep.sh"
 COOKIE_VAL=$(grep -i "session=" /tmp/ticketing_test_cookie.txt | sed 's/^set-cookie:[ ]*//I' | cut -d';' -f1)
 COOKIE_HEADER="Cookie: ${COOKIE_VAL}"
 
-echo "💧 Soak Test: Sustained Load for 10 Minutes (300 users) against /api/orders"
+echo "🎟 Ticket Service Load Test: GET"
 
-oha -z 10m -c 300 --insecure \
+# Get tickets (GET)
+oha -z 1m -c 700 --insecure \
   --disable-keepalive \
   --latency-correction \
   -H "Host: ${HOST_HEADER}" \
   -H "${COOKIE_HEADER}" \
-  "${BASE}/api/orders"
+  "${BASE}/api/tickets"

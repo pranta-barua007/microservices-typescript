@@ -1,0 +1,50 @@
+bash perf-tests/oha/spike-test.sh
+⚡ Spike Test: Sudden Traffic Surge to 1000 Users for 1 minute
+Summary:
+  Success rate: 100.00%
+  Total:        6.0490 10 sec
+  Slowest:      5.9899 10 sec
+  Fastest:      0.0206 10 sec
+  Average:      0.2445 10 sec
+  Requests/sec: 120.0042
+
+  Total data:   50.49 KiB
+  Size/request: 8 B
+  Size/sec:     854 B
+
+Response time histogram:
+  0.021 10 sec [1]    |
+  0.618 10 sec [5882] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  1.214 10 sec [21]   |
+  1.811 10 sec [37]   |
+  2.408 10 sec [166]  |
+  3.005 10 sec [58]   |
+  3.602 10 sec [12]   |
+  4.199 10 sec [43]   |
+  4.796 10 sec [23]   |
+  5.393 10 sec [7]    |
+  5.990 10 sec [9]    |
+
+Response time distribution:
+  10.00% in 0.0515 10 sec
+  25.00% in 0.0660 10 sec
+  50.00% in 0.0953 10 sec
+  75.00% in 0.1342 10 sec
+  90.00% in 0.1890 10 sec
+  95.00% in 1.8447 10 sec
+  99.00% in 3.7720 10 sec
+  99.90% in 5.5818 10 sec
+  99.99% in 5.9899 10 sec
+
+
+Details (average, fastest, slowest):
+  DNS+dialup:   0.1750 10 sec, 0.0065 10 sec, 0.3927 10 sec
+  DNS-lookup:   0.0000 10 sec, 0.0000 10 sec, 0.0012 10 sec
+
+Status code distribution:
+  [200] 6008 responses
+  [504] 204 responses
+  [502] 47 responses
+
+Error distribution:
+  [1000] aborted due to deadline

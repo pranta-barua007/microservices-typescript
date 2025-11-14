@@ -1,24 +1,19 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
-echo "🚀 Starting Full OHA Performance Suite (500–1000 users)"
-echo "---------------------------------------------------------"
-
-scripts=(
-  "smoke-test.sh"
-  "load-test-auth.sh"
-  "load-test-tickets.sh"
-  "load-test-orders.sh"
-  "load-test-payments.sh"
-  "spike-test.sh"
-  "soak-test.sh"
+SCRIPTS=(
+  smoke-test.sh
+  load-test-auth-signin.sh
+  load-test-create-tickets.sh
+  load-test-get-tickets.sh
+  load-test-get-orders.sh
+  spike-test.sh
+  soak-test.sh
 )
 
-for script in "${scripts[@]}"; do
-  echo -e "\n▶️  Running $script..."
-  bash "./$script"
-  echo -e "✅ Completed $script\n----------------------------------------"
-  sleep 10
+for s in "${SCRIPTS[@]}"; do
+  echo ">>> Running $s"
+  bash "./$s"
+  echo ">>> Done $s"
+  sleep 5
 done
-
-echo "🎯 All OHA Tests Completed!"

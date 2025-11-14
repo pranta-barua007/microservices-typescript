@@ -11,9 +11,10 @@ source "$SCRIPT_DIR/common_prep.sh"
 COOKIE_VAL=$(grep -i "session=" /tmp/ticketing_test_cookie.txt | sed 's/^set-cookie:[ ]*//I' | cut -d';' -f1)
 COOKIE_HEADER="Cookie: ${COOKIE_VAL}"
 
-echo "💧 Soak Test: Sustained Load for 10 Minutes (300 users) against /api/orders"
+echo "📦 Order Service Load Test (500 concurrent users)"
 
-oha -z 10m -c 300 --insecure \
+# Get orders (safe authenticated endpoint)
+oha -z 2m -c 500 --insecure \
   --disable-keepalive \
   --latency-correction \
   -H "Host: ${HOST_HEADER}" \

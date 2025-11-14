@@ -1,0 +1,49 @@
+bash perf-tests/oha/soak-test.sh
+💧 Soak Test: Sustained Load for 10 Minutes (300 users)
+Summary:
+  Success rate: 100.00%
+  Total:        10.0032 min
+  Slowest:      3.0371 min
+  Fastest:      0.0002 min
+  Average:      0.0188 min
+  Requests/sec: 256.1388
+
+  Total data:   6.04 MiB
+  Size/request: 41 B
+  Size/sec:     10.30 KiB
+
+Response time histogram:
+  0.000 min [1]      |
+  0.304 min [153030] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.608 min [43]     |
+  0.911 min [28]     |
+  1.215 min [21]     |
+  1.519 min [0]      |
+  1.822 min [0]      |
+  2.126 min [4]      |
+  2.430 min [0]      |
+  2.733 min [0]      |
+  3.037 min [324]    |
+
+Response time distribution:
+  10.00% in 0.0081 min
+  25.00% in 0.0095 min
+  50.00% in 0.0112 min
+  75.00% in 0.0136 min
+  90.00% in 0.0168 min
+  95.00% in 0.0199 min
+  99.00% in 0.0281 min
+  99.90% in 3.0023 min
+  99.99% in 3.0366 min
+
+
+Details (average, fastest, slowest):
+  DNS+dialup:   0.0192 min, 0.0048 min, 0.0323 min
+  DNS-lookup:   0.0000 min, 0.0000 min, 0.0001 min
+
+Status code distribution:
+  [401] 153127 responses
+  [504] 324 responses
+
+Error distribution:
+  [281] aborted due to deadline
