@@ -1,0 +1,22 @@
+{
+  "name": "k6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run smoke",
+    "smoke": "k6 run src/scenarios/smoke.js",
+    "load": "k6 run src/scenarios/load.js",
+    "stress": "k6 run src/scenarios/stress.js",
+    "spike": "k6 run src/scenarios/spike.js",
+    "soak": "k6 run src/scenarios/soak.js",
+    "journey": "k6 run src/scenarios/journey.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/k6": "^1.4.0"
+  }
+}
