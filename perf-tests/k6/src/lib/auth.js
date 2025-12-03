@@ -3,10 +3,10 @@ import { BASE_URL, TEST_USER, HOST_HEADER } from "../config.js";
 import { apiPost } from "./http.js";
 import { sleep } from "k6";
 
-export function ensureUserExists() {
+export function ensureUserExists(user=TEST_USER) {
   // Attempt signup — if already exists, it's fine
   http.post(`${BASE_URL}/api/users/signup`,
-    JSON.stringify(TEST_USER),
+    JSON.stringify(user),
     {
       headers: { "Content-Type": "application/json", "Host": HOST_HEADER },
       insecureSkipTLSVerify: true,
@@ -15,14 +15,14 @@ export function ensureUserExists() {
   sleep(1);
 }
 
-export function loginUser() {
+export function loginUser(user=TEST_USER) {
   const jar = http.cookieJar();
 
   const res = apiPost(
     `${BASE_URL}/api/users/signin`,
     {
-      email: TEST_USER.email,
-      password: TEST_USER.password,
+      email: user.email,
+      password: user.password,
     },
     jar
   );
