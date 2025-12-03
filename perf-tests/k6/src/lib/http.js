@@ -7,7 +7,7 @@ export function apiGet(url, jar, params = {}) {
   const res = http.get(url, { ...params, headers, jar });
 
   if (!check(res, { "status is 2xx": (r) => r.status >= 200 && r.status < 300 })) {
-    fail(`GET ${url} failed → ${res.status}`);
+    fail(`GET ${url} failed → ${res.status} message → ${res.body}`);
   }
 
   return res;
@@ -22,7 +22,7 @@ export function apiPost(url, body, jar, params = {}) {
   );
 
   if (!check(res, { "status is 2xx/201": (r) => r.status >= 200 && r.status < 300 })) {
-    fail(`POST ${url} failed → ${res.status}`);
+    fail(`POST ${url} failed → ${res.status} message → ${res.body}`);
   }
 
   return res;
