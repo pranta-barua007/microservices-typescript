@@ -5,7 +5,7 @@ import { createOrder, getOrders } from "../lib/orders.js";
 import { payOrder } from "../lib/payments.js";
 
 export const options = {
-  vus: 20,
+  vus: 100,
   duration: "1m",
   insecureSkipTLSVerify: true,
 };
@@ -21,22 +21,22 @@ export default function (data) {
 
   // 1. Create Ticket
   const ticketName = `Journey Ticket ${__ITER}`;
-  const ticketPrice = 40 + __ITER;
+  const ticketPrice = Number(40 + __ITER);
   const ticket = createTicket(cookie, ticketName, ticketPrice);
   const ticketId = ticket.json().id;
-  
-  sleep(1); 
+
+  sleep(0.5);
 
   // 2. Create Order
   const order = createOrder(cookie, ticketId);
   const orderId = order.json().id;
 
-  sleep(1);
+  sleep(0.5);
 
   // 3. Pay Order
   payOrder(cookie, orderId);
 
-  sleep(1);
+  sleep(0.5);
   // 4. Get all orders
   getOrders(cookie);
 }
